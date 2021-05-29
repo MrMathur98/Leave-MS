@@ -1,0 +1,72 @@
+<aura:component  controller="projectClass" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <!-- Handler to call function when page is loaded initially -->
+    <aura:attribute name="reg" type="Leave_MS__c[]"/>
+    <aura:attribute name="intervalID" type="Integer"/>
+    <aura:handler name="init" action="{!c.getRequestList}" value="{!this}" />
+    <div style="background-image: url('https://d24wuq6o951i2g.cloudfront.net/img/events/id/286/2867696/assets/a85.NJUG_Winter18-01.jpg');background-size: cover; background-repeat: no-repeat;">
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+  	<thead>
+    <tr class="slds-line-height_reset">
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Name">Name</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="User Attendance">User Attendance</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Starting Date">Starting Date</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Ending Date">Ending Date</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Starting Date">Starting Time</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Ending Time">Ending Time</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Leave Status">Leave Status</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Marked By">Marked By</div>
+      </th>
+    </tr>
+  </thead>    
+    <aura:iteration var="r" items="{!v.reg}" >
+            <tbody>
+    	<tr class="slds-hint-parent">
+      <th data-label="Name" scope="row">
+        <div class="slds-truncate" title="{!r.Name}">
+          <a href="#" tabindex="-1">{!r.Name}</a>
+        </div>
+      </th>
+      <td data-label="User Attendance">
+        <div class="slds-truncate" title="{!r.User_attendance__c}">{!r.User_attendance__c}</div>
+      </td>
+      <td data-label="Starting Date">
+        <div class="slds-truncate" title="{!r.Starting_date__c}">{!r.Starting_date__c}</div>
+      </td>
+      <td data-label="Ending Date">
+        <div class="slds-truncate" title="{!r.Ending_date__c}">{!r.Ending_date__c}</div>
+      </td>
+      <td data-label="Starting Time">
+        <div class="slds-truncate" title="{!r.Starting_Time__c}">{!r.Starting_Time__c}</div>
+      </td>
+      <td data-label="Ending Time">
+        <div class="slds-truncate" title="{!r.Ending_Time__c}">{!r.Ending_Time__c}</div>
+      </td>
+      <td data-label="Leave Status">
+        <div class="slds-truncate" title="{!r.Leave_Status__c}">{!r.Leave_Status__c}</div>
+      </td>
+      <td data-label="Marked By">
+        <div class="slds-truncate" title="{!r.Marked_By_Email__c}">
+          <a href="#" tabindex="-1">{!r.Marked_By_Email__c}</a>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    </aura:iteration>
+    </table>
+    </div>
+</aura:component>

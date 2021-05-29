@@ -1,0 +1,16 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+    <meta charset="utf-8"/>
+    <title>My project</title>
+    <apex:includeScript value="/lightning/lightning.out.js"/>
+    <apex:includeLightning />
+    
+    <div id="lightning" />
+    
+    <script>
+        $Lightning.use("c:applicationproject",function(){
+                       $Lightning.createComponent("c:applicationprojectcmp",{},"lightning",function(cmp){
+                        });
+        });
+    </script>
+    
+</apex:page>

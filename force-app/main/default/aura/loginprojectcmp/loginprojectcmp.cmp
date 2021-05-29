@@ -1,0 +1,33 @@
+<aura:component  controller="projectClass" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:registerevent name="forceNavig2Component" type="force:navigateToComponent"/>
+    <aura:attribute name="email" type="String"/>
+    <aura:attribute name="password" type="String"/>
+    <aura:attribute name="showdash" type="String"/>
+	<aura:attribute name="showreg" type="String"/>
+    <aura:attribute name="showlog" type="String"/>
+    <aura:attribute name="showhome" type="String"/>
+    
+	<div style="height: 97.5vh;background-image: url('https://s24806.pcdn.co/wp-content/uploads/2018/03/SalesForce_LOGOART-salesforce_ART-MONTAGE-DI_GrowthCamp322_ARTLOGO_Salesforce-copy.jpg');background-size: cover; background-repeat: no-repeat;">
+        <div class="slds-border_top" style="color:black;font-weight:italic;font-family:Arial, Helvetica, sans-serif;font-size:40px;">
+            <div style="border-radius:2px;height:25px;margin-top:10px">
+            LEAVE MANAGEMENT SYSTEM
+            </div>
+        </div>
+        
+    
+         <div style="transform: translateY(22vh);display:flex; justify-content:space-evenly; flex-direction:column; border-radius:5px; box-shadow: 0 2px 6px #777777;height:30; width:50vw; background-color:#eeeeee; margin:auto;padding:5vw;background-image: url('https://unforced.de/storage/blog/2018/Salesforce_Spring18/Salesforce_Spring18.jpg');background-size: cover; background-repeat: no-repeat;">  
+          <label style="color:black;font-weight:bold;font-size:18px;font-family:Roboto;" for="one">Email</label>
+          <lightning:input style="border:none;border-radius:30px;height:35px;margin-bottom:50px" type="email" value="{!v.email}" id="one" required="true"/>
+          <label style="color:black;font-weight:bold;font-size:18px;font-family:Roboto;" for="two">Password</label>
+          <lightning:input style="border:none;border-radius:30px;height:35px;margin-bottom:60px" type="password" value="{!v.password}" id="two" required="true"/>
+           
+          <div style="display:flex">
+            <button onclick="{!c.login}" style="margin-right:20px" class="slds-button slds-button_brand">Login</button> 
+      		<button onclick="{!c.register}" style="margin-right:20px" class="slds-button slds-button_neutral">Register</button>
+          </div>
+        </div>
+  
+                                                                             
+    	</div>
+    
+</aura:component>

@@ -1,0 +1,42 @@
+<aura:component controller="projectClass">
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="password" type="String"/>
+    <aura:attribute name="Fname" type="String"/>
+    <aura:attribute name="email" type="String"/>
+    <aura:attribute name="Mobile" type="String"/>
+    <aura:attribute name="showdash" type="String"/>
+	<aura:attribute name="showreg" type="String"/>
+    <aura:attribute name="showlog" type="String"/>
+    <aura:attribute name="showhome" type="String"/>
+    <div style="display:flex; justify-content:right; align-items:right; flex-direction:column; height: 97.5vh;background-image: url('https://pbs.twimg.com/media/EXwqsdzXYAAlXYP.jpg');background-size: cover; background-repeat: no-repeat;">
+        
+        <div class ="slds-float_right">
+           <div class="slds-float_right" style="height:2rem">
+        	<button onclick="{!c.backlogin}" class="slds-button slds-button_neutral">Back to Login</button>
+           </div>
+        	
+        
+        </div>         
+        
+          <div style="display:flex; justify-content:space-evenly; flex-direction:column; border-radius:20px; box-shadow: 0 2px 6px #777777; width:25vw; background-image: url('https://pbs.twimg.com/media/EYUMlK1UEAM_Ou4.jpg');background-size: cover; background-repeat: no-repeat; margin:auto; margin-top:1vh; padding:6vw">
+          <label style="color: DodgerBlue;font-weight:bold;font-size:18px;font-family:arial;" for="one">FULL NAME</label>
+          <lightning:input style="border:none;border-radius:50px;height:20px;margin-bottom:40px" aura:id="name1" type="name" pattern = "[A-Z][a-z ]+[A-Z][A-Za-z ]{0,20}" value="{!v.name}" id="one" required="false"/>
+          <label style="color: DodgerBlue;font-weight:bold;font-size:18px;font-family:arial;" for="two">PASSWORD</label>
+          <lightning:input style="border:none;border-radius:50px;height:20px;margin-bottom:40px" aura:id="password5" type="password" pattern= "(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?])[A-Za-z\d@$!%*?]{8,}" value="{!v.password}" id="two" required="false"/>
+          <label style="color: DodgerBlue;font-weight:bold;font-size:18px;font-family:arial;" for="three">FATHER'S NAME</label>
+          <lightning:input style="border:none;border-radius:50px;height:30px;margin-bottom:25px" aura:id="fname2" type="fname" pattern = "[A-Z][a-z ]+[A-Z][A-Za-z ]{0,20}" value="{!v.Fname}" id="three" required="false"/>
+          <label style="color: DodgerBlue;font-weight:bold;font-size:18px;font-family:arial;" for="four">EMAIL</label>
+          <lightning:input style="border:none;border-radius:50px;height:30px;margin-bottom:25px" aura:id="email3" type="email" pattern ="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" value="{!v.email}" id="four" required="false"/>
+          <label style="color: DodgerBlue;font-weight:bold;font-size:18px;font-family:arial;" for="five">MOBILE</label>
+          <lightning:input style="border:none;border-radius:50px;height:30px;margin-bottom:25px" aura:id="mob4" type="text" pattern = "[6-9]\d{9}" maxlength="10"  value="{!v.Mobile}" id="five" required="false"/>
+                        <div class="slds-float_right" style="height:3rem">
+              <button onclick="{!c.submit}" class="slds-button slds-button_brand">Submit</button>
+              
+      
+           
+    					</div>
+    	</div>
+  </div>
+    
+	
+</aura:component>

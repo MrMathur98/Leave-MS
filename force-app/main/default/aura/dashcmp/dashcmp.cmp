@@ -1,0 +1,125 @@
+<aura:component controller="projectClass">
+    
+    <aura:attribute name="showdash" type="String"/>
+	<aura:attribute name="showreg" type="String"/>
+    <aura:attribute name="showlog" type="String"/>
+    <aura:attribute name="showhome" type="String"/>
+    <aura:attribute name="selectedId" type="String" />
+    <aura:attribute name="selectedName" type="String" />
+    <aura:attribute name="LM_user" type="String" />
+    <aura:attribute name="LM_admin" type="String" />
+    <aura:attribute name="nleaves" type="String" />
+    <aura:attribute name="nHours" type="String" />
+    <aura:attribute name="dateValidationError" type="boolean" />
+    <aura:attribute name="leaveStatus" type="String" default="Open" />
+    <aura:attribute name="sDate" type="String" default='' />
+    <aura:attribute name="eDate" type="String" />
+    <aura:attribute name="sTime" type="Time" />
+    <aura:attribute name="eTime" type="Time" />
+    <aura:attribute name="startingTime" type="Time" />
+    <aura:attribute name="endingTime" type="Time" />
+    <aura:attribute name="sTM" type="Integer" />
+    <aura:attribute name="eTM" type="Integer" />
+    <aura:attribute name="Attendance" type="String" />
+    <aura:attribute name="email" type ="String"/>
+    <aura:attribute name="sTabId" type="string" default="1" />
+    <aura:attribute name="leaveOptions" type="List" default="[
+    {'label': 'Halfday', 'value': 'type1'},
+    {'label': 'Fullday', 'value': 'type2'},
+    {'label': 'More than one day', 'value': 'type3'}
+    ]"/>
+    <aura:attribute name="leaveType" type ="String" default=""/>
+    
+    
+    	<div class="slds-float_right" style="height:2rem">
+            <button onclick="{!c.logout}" class="slds-button slds-button_brand" >Logout</button>
+           </div>
+       <lightning:tabset selectedTabId="{!v.sTabId}">
+        
+       
+           <div style="height:93vh; background-image: url('https://blog.centricodigital.com/wp-content/uploads/2020/12/sales_blog-1.jpg');background-size: cover; background-repeat: no-repeat;">
+              
+               <lightning:tab label="New" id="1">
+            
+            <div class="slds-card" style="transform: translateY(0vh);display:flex; justify-content:space-center; flex-direction:column; border-radius:10px; box-shadow: 0 2px 6px #777777;height:25; width:30vw; background-color:#eeeeee;margin:auto; padding:1vw; background-image: url('https://www.salesforce.com/blog/wp-content/uploads/sites/2/2021/01/einstein.png');background-size: cover; background-repeat: no-repeat;">
+               
+                <c:lookupField 
+                    objectAPIName="LM_user__c" 
+                    label="Leave Management Users"
+                    returnFields="['Name']" 
+                    queryFields="['Name']"
+                    selectedId="{!v.selectedId}"
+                    selectedName="{!v.selectedName}"
+                    
+                    filter="CreatedDate > 2001-01-01T00:00:01Z"/>
+                <lightning:select name="leaveStatus" label="Leave Status" required="true" aura:id="leaveStatus" onchange="{!c.statusUpdate}">
+       			<option value="Open">Open</option>
+        		<option value="In Progress">In Progress</option>
+        		<option value="Rejected">Rejected</option>
+        		<option value="Closed">Closed</option>
+    			</lightning:select>
+                <aura:if isTrue="{!v.leaveStatus != 'Closed'}">
+                <lightning:radioGroup name="Type of Leave"
+                             label="Type of leave"
+                             options="{! v.leaveOptions }"
+                             value="{! v.leaveType }"
+                             required="true"
+                             type="button"
+                             onchange="{!c.typeUpdate}"/>
+                </aura:if>
+            <lightning:input type="date" aura:id="StartDate" label="Start Date" format="DD/MM/YYYY" placeholder="Select Start Date.."
+                                                      value="{!v.sDate}" required="true" onchange="{!c.dateUpdate}"/>
+                 <aura:if isTrue="{!v.leaveStatus != 'Closed'}">
+             <aura:if isTrue="{!v.leaveType == 'type1'}">
+                 <lightning:input type="time" aura:id="StartTime"  label="Start Time" placeholder="Select starting time" value="{!v.sTime}" required="true"/>
+                 <lightning:input type="time" aura:id="EndTime"  label="End Time" placeholder="Select ending time" value="{!v.eTime}" required="true" onchange="{!c.timeUpdate}"/>
+                </aura:if>
+           <aura:if isTrue="{!v.dateValidationError}">
+            <div class="slds-text-color_error slds-p-left_x-small slds-p-top_x-small">
+                StartDate cannot be later than end date
+            </div>
+          </aura:if>
+           <aura:if isTrue="{!v.leaveType == 'type3'}">
+           <lightning:input type="date" aura:id="EndDate" label="End Date" format="DD/MM/YYYY" placeholder="Select End Date .."
+                                                      value="{!v.eDate}" required="true" onchange="{!c.dateUpdate}"/> 
+                </aura:if>
+                <lightning:input type ="text" label="Leave MS Name" disabled="true" value="{!v.selectedName}" required="true" />
+                <aura:if isTrue="{!v.leaveType != 'type1'}">
+                <aura:if isTrue="{!lessthan(v.nleaves,2)}">
+                 <lightning:input  name="Numberofleaves" label="Number of Leaves" disabled="true" value="{!v.nleaves+' day'}" required="true" />
+                </aura:if>
+                <aura:if isTrue="{!greaterthan(v.nleaves,1)}">
+                 <lightning:input  name="Numberofleaves" label="Number of Leaves" disabled="true" value="{!v.nleaves+' days'}" required="true" />
+                </aura:if>
+                </aura:if>
+                <aura:if isTrue="{!v.leaveType == 'type1'}">
+                <aura:if isTrue="{!lessthan(v.nHours,2)}">
+                <lightning:input  name="NumberofHours" label="Number of Hours" disabled="true" value="{!v.nHours+' hour'}" required="true" />
+                </aura:if>
+                <aura:if isTrue="{!greaterthan(v.nHours,1)}">
+                <lightning:input  name="NumberofHours" label="Number of Hours" disabled="true" value="{!v.nHours+' hours'}" required="true" />
+                </aura:if>
+                </aura:if>
+                </aura:if>
+                <lightning:select  name="Attendance" label="Attendance" required="true" aura:id="Attendance">
+       			<option value="Present">Present</option>
+        		<option value="Absent">Absent</option>
+    		</lightning:select>
+                <button onclick="{!c.submitNewLeave}" class="slds-button slds-button_brand" >Submit</button>
+                
+                
+            </div>
+        </lightning:tab>
+        <lightning:tab label="View Progess" title="2nd tab extended title" id="2">
+            <c:viewRequestsProjectcmp/>
+        </lightning:tab>
+        <lightning:tab label="My Profile" id="3">
+            <c:viewProfile/>
+            
+        </lightning:tab>
+        </div> 
+           
+    </lightning:tabset>
+     
+
+</aura:component>

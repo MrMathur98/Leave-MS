@@ -1,0 +1,22 @@
+<aura:component >
+    <aura:attribute name="checklogin" type="boolean" default="true" />
+    <aura:attribute name="checkReg" type="String" default="false"/>
+    <aura:attribute name="checkdash" type="boolean" />
+    <aura:attribute name="showdash" type="String"/>
+	<aura:attribute name="showreg" type="String"/>
+    <aura:attribute name="showlog" type="String"/>
+    <aura:attribute name="showhome" type="String"/>
+    <aura:attribute name="emailContainer" type="String"/>
+   
+    <aura:if isTrue="{!v.checklogin}">
+        <c:loginprojectcmp  showhome="{!v.checkdash}" showlog="{!v.checklogin}" showreg="{!v.checkReg}" email="{!v.emailContainer}"/>    
+  	</aura:if>
+    <aura:if isTrue="{!v.checkReg}">
+        <c:regprojectcmp showhome="{!v.checkdash}" showlog="{!v.checklogin}" showreg="{!v.checkReg}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.checkdash}">
+		<c:dashcmp showhome="{!v.checkdash}" showlog="{!v.checklogin}" showreg="{!v.checkReg}" email="{!v.emailContainer}"/>
+    </aura:if>
+   
+	
+</aura:component>

@@ -1,0 +1,51 @@
+<aura:component controller="projectClass">
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+   <aura:attribute name="arr" type="String" />
+    <div style="height: 90vh; background-image: url('https://www.salesforce.com/blog/wp-content/uploads/sites/2/2020/10/winter-21-release-option-3.jpg?w=889');background-size: cover; background-repeat: no-repeat;">
+    
+    <div class="demo-only" style="display:flex; justify-content:space-evenly; flex-direction:column; border-radius:20px; box-shadow: 0 2px 6px #777777; width:50vw; background-image: url('https://backgrounddownload.com/wp-content/uploads/2018/09/background-game-animasi-3.jpg');background-size: cover; background-repeat: no-repeat; margin:auto; margin-top:1vh; padding:6vw">
+  <article class="slds-tile slds-media">
+    <div class="slds-media__figure">
+      <span class="slds-avatar slds-avatar_circle slds-avatar_medium">
+        <img alt="" src="/assets/images/avatar2.jpg" title="{!v.arr.Name__c}" />
+      </span>
+    </div>
+    <div class="slds-media__body">
+      <h3 class="slds-tile__title slds-truncate" title="{!v.arr.Name__c}">
+        <a href="#">{!v.arr.Name__c}</a>
+      </h3>
+      <div class="slds-tile__detail">
+        <dl class="slds-list_horizontal slds-wrap">
+          <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">ID</dt>
+          <dd class="slds-item_detail slds-truncate" title="Description for first label">{!v.arr.Name}</dd>
+          <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Full Name</dt>
+          <dd class="slds-item_detail slds-truncate" title="Description for second label">{!v.arr.Name__c}</dd>
+          <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Father's Name</dt>
+          <dd class="slds-item_detail slds-truncate" title="Description for second label">{!v.arr.Fname__c}</dd>
+          <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Email</dt>
+          <dd class="slds-item_detail slds-truncate" title="Description for second label">{!v.arr.email__c}</dd>
+          <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Mobile</dt>
+          <dd class="slds-item_detail slds-truncate" title="Description for second label">{!v.arr.MobileNo__c}</dd>
+        </dl>
+      </div>
+        <div class="slds-box" style="color:white;font-weight:bold;font-size:10px;font-family:Roboto;">
+ <div class="slds-scrollable" style="height:5rem;width:24rem">
+  <p>How to Use?</p>
+  <div class="slds-text-longform" style="width:200%">
+    <p>Hello here we can give any instructions or manual to use our Leave Management System.</p>
+  </div>
+ </div>
+</div>
+    </div>
+  </article>
+</div>
+
+   
+                
+
+
+       
+                 
+    </div>                
+ 
+</aura:component>
